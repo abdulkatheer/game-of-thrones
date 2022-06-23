@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: vote
+  name: result-deployment
+spec:
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      labels:
+        app: result
+    spec:
+      containers:
+        - name: result
+          image: kodekloud/examplevotingapp_result:before
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: vote
+  name: result-service
+spec:
+  selector:
+    app: result
+  type: NodePort
+  ports:
+    - port: 5001
+      targetPort: 80
+      nodePort: 31001

@@ -1,0 +1,5 @@
+1) Fix port in .kube/config
+2) Fix CA crt file path in kube-apiserver.yml manifest
+3) Change image of coredns kubectl edit deployments.apps coredns -n kube-system
+4) Edit node01 - kubectl patch node node01 -p "{\"spec\":{\"unschedulable\":false}}"
+5) scp /media/* root@node01:/web
